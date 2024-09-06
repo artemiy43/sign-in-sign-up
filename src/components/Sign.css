@@ -1,0 +1,27 @@
+@keyframes changePositionToRight {
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+
+@keyframes changePositionToLeft {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0;
+  }
+}
+
+.toRight {
+  left: 50%;
+  animation: changePositionToRight 0.6s linear 1;
+}
+
+.toLeft {
+  left: 0;
+  animation: changePositionToLeft 0.6s linear 1;
+}
