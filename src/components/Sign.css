@@ -16,6 +16,15 @@
   }
 }
 
+/* @keyframes changeWidth {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+} */
+
 .toRight {
   left: 50%;
   animation: changePositionToRight 0.6s linear 1;
@@ -24,4 +33,7 @@
 .toLeft {
   left: 0;
   animation: changePositionToLeft 0.6s linear 1;
+}
+.based {
+  left: 50%;
 }

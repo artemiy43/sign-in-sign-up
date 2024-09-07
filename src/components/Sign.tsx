@@ -1,11 +1,15 @@
-import { useRef, useState } from "react";
-import styled, { keyframes } from "styled-components";
+import { useState } from "react";
+import styled from "styled-components";
 import "./Sign.css";
+import { ButtonSwitch } from "./StyledFormComponents";
+import FormStyled from "./StyledForm";
 function Sign() {
-  const [sign, setSign] = useState<string>("up");
+  const [sign, setSign] = useState<string>("");
   // const signRef = useRef(null);
+
   function change() {
-    if (sign === "up") setSign("in");
+    if (sign === "") setSign("in");
+    else if (sign === "up") setSign("in");
     else setSign("up");
   }
 
@@ -35,7 +39,7 @@ function Sign() {
     text-align: center;
     background: ${(props) => (props.sign === "up" ? "red" : "white")};
     color: ${(props) => (props.sign === "up" ? "white" : "red")};
-    transition: all 2s linear;
+    transition: all 1.5s linear;
   `;
 
   const Sign = styled.div<{ sign: string }>`
@@ -52,34 +56,31 @@ function Sign() {
     text-align: center;
     background: ${(props) => (props.sign === "up" ? "white" : "red")};
     color: ${(props) => (props.sign === "up" ? "red" : "white")};
-    transition: all 2s linear;
+    transition: all 1.5s linear;
   `;
 
-  const H1 = styled.h1<{ sign: string }>`
-    /* color: ${(props) => (props.sign === "up" ? "w" : "white")}; */
-  `;
-
-  const ButtonSwitch = styled.button<{ sign: string }>`
-    background: ${(props) => (props.sign === "up" ? "red" : "white")};
-    color: ${(props) => (props.sign === "up" ? "white" : "red")};
-    width: 200px;
-  `;
   return (
     <Main>
       <TitleContainer
         sign={sign}
-        // ref={signRef}
-        className={`${sign === "up" ? "toLeft" : "toRight"}`}
+        className={`${sign === "" ? "" : sign === "up" ? "toLeft" : "toRight"}`}
       >
-        <H1 sign={sign}>
-          {sign === "up" ? "Добро пожаловать!" : "Рады вас снова видеть!"}
-        </H1>
+        <h1>
+          {sign === "up" || sign === ""
+            ? "Добро пожаловать!"
+            : "Рады снова вас видеть!"}
+        </h1>
         <ButtonSwitch sign={sign} onClick={change}>
-          {sign === "up" ? "Зарегистрироваться" : "Войти"}
+          {sign === "up" || sign === "" ? "Зарегистрироваться" : "Войти"}
         </ButtonSwitch>
       </TitleContainer>
-      <Sign sign={sign} className={`${sign === "up" ? "toRight" : "toLeft"}`}>
-        sfsdfsdsf
+      <Sign
+        sign={sign}
+        className={`${
+          sign === "" ? "based" : sign === "up" ? "toRight" : "toLeft"
+        }`}
+      >
+        <FormStyled sign={sign} />
       </Sign>
     </Main>
   );
