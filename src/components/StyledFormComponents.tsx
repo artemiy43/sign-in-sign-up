@@ -1,4 +1,28 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const changeGradient = keyframes`
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 100%;
+  }
+`;
+
+const rotate = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg)
+  }
+`;
 
 export const SignForm = styled.form`
   width: 100%;
@@ -60,38 +84,30 @@ export const ButtonSwitch = styled.button<{ sign: string }>`
   }
 `;
 
-export const ButtonSubmit = styled.button<{ sign: string }>`
-  position: relative;
-  background: none;
+export const ButtonSubmit = styled(ButtonSwitch)<{ sign: string }>`
   color: ${(props) => (props.sign === "up" ? "red" : "white")};
-  width: 200px;
-  cursor: pointer;
-  transition: 0.5s;
-  border: none;
-  padding: 15px;
-  box-sizing: border-box;
-  z-index: 0;
-  border-radius: 10px;
-
-  &::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 0%;
-    background: ${(props) => (props.sign === "up" ? "red" : "white")};
-    border-radius: 10px;
-    z-index: -1;
-    transition: 0.5s;
-  }
-
   &:hover {
-    border: none;
     color: ${(props) => (props.sign === "up" ? "white" : "red")};
+    animation: ${rotate} 0.7s ease 1;
   }
+  &::before {
+    background: ${(props) => (props.sign === "up" ? "red" : "white")};
+  }
+`;
 
-  &:hover::before {
-    width: 100%;
-  }
+export const GradientButton = styled.button`
+  width: 150px;
+  height: 95px;
+  border-radius: none;
+  border: 1px wheat solid;
+  color: white;
+  background: linear-gradient(
+    to bottom right,
+    #917474 0%,
+    #e45454 25%,
+    #ff0000 50%,
+    #740202 80%
+  );
+  background-size: 200% 200%;
+  animation: ${changeGradient} 5s linear infinite alternate;
 `;
