@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import "./Sign.css";
-import { ButtonSwitch } from "./StyledFormComponents";
+import { Titlee } from "./StyledFormComponents";
 import FormStyled from "./StyledForm";
 function Sign() {
   const [sign, setSign] = useState<string>("");
@@ -25,7 +25,7 @@ function Sign() {
     min-width: 320px;
   `;
 
-  const TitleContainer = styled.div<{ sign: string }>`
+  const TitleContainer = styled.div`
     position: absolute;
     top: 0;
     /* left: 0; */
@@ -37,12 +37,12 @@ function Sign() {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: ${(props) => (props.sign === "up" ? "red" : "white")};
-    color: ${(props) => (props.sign === "up" ? "white" : "red")};
+    background: white;
+    color: red;
     transition: all 1.5s linear;
   `;
 
-  const Sign = styled.div<{ sign: string }>`
+  const Sign = styled.div`
     position: absolute;
     top: 0;
     /* left: 50%; */
@@ -54,8 +54,8 @@ function Sign() {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: ${(props) => (props.sign === "up" ? "white" : "red")};
-    color: ${(props) => (props.sign === "up" ? "red" : "white")};
+    background: red;
+    color: white;
     transition: all 1.5s linear;
   `;
 
@@ -65,14 +65,11 @@ function Sign() {
         sign={sign}
         className={`${sign === "" ? "" : sign === "up" ? "toLeft" : "toRight"}`}
       >
-        <h1>
+        <Titlee sign={sign}>
           {sign === "up" || sign === ""
             ? "Добро пожаловать!"
             : "Рады снова вас видеть!"}
-        </h1>
-        <ButtonSwitch sign={sign} onClick={change}>
-          {sign === "up" || sign === "" ? "Зарегистрироваться" : "Войти"}
-        </ButtonSwitch>
+        </Titlee>
       </TitleContainer>
       <Sign
         sign={sign}
@@ -80,7 +77,7 @@ function Sign() {
           sign === "" ? "based" : sign === "up" ? "toRight" : "toLeft"
         }`}
       >
-        <FormStyled sign={sign} />
+        <FormStyled sign={sign} change={change} />
       </Sign>
     </Main>
   );

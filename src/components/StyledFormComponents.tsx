@@ -24,13 +24,48 @@ const rotate = keyframes`
   }
 `;
 
+const bordertop = keyframes`
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  50% {
+    width: 100%;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    height: 97%;
+    opacity: 1;
+  }
+`;
+const borderbottom = keyframes`
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  50% {
+    width: 100%;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    height: 97%;
+    opacity: 1;
+  }
+`;
+
 export const SignForm = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start;
-  gap: 20px;
+  align-items: center;
+  gap: 10px;
   padding: 30px;
   margin: 0;
   box-sizing: border-box;
@@ -39,8 +74,8 @@ export const SignForm = styled.form`
 export const SignInput = styled.input`
   width: 80%;
   border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-  background: rgba(255, 255, 255, 0.774);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 1);
   color: black;
   padding: 5px;
   font-size: 20px;
@@ -48,15 +83,24 @@ export const SignInput = styled.input`
   border-radius: 10px;
 `;
 
-export const ButtonSwitch = styled.button<{ sign: string }>`
+export const InputContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 5px;
+`;
+
+export const ButtonSwitch = styled.button`
   position: relative;
   background: none;
-  color: ${(props) => (props.sign === "up" ? "white" : "red")};
+  color: white;
   width: 200px;
   cursor: pointer;
   transition: 0.5s;
   border: none;
-  padding: 15px;
+  padding: 10px;
   box-sizing: border-box;
   z-index: 0;
   border-radius: 10px;
@@ -68,15 +112,14 @@ export const ButtonSwitch = styled.button<{ sign: string }>`
     top: 0;
     height: 100%;
     width: 0%;
-    background: ${(props) => (props.sign === "up" ? "white" : "red")};
-    border-radius: 10px;
+    background: white;
     z-index: -1;
     transition: 0.5s;
   }
 
   &:hover {
     border: none;
-    color: ${(props) => (props.sign === "up" ? "red" : "white")};
+    color: red;
   }
 
   &:hover::before {
@@ -84,14 +127,32 @@ export const ButtonSwitch = styled.button<{ sign: string }>`
   }
 `;
 
-export const ButtonSubmit = styled(ButtonSwitch)<{ sign: string }>`
-  color: ${(props) => (props.sign === "up" ? "red" : "white")};
-  &:hover {
-    color: ${(props) => (props.sign === "up" ? "white" : "red")};
-    animation: ${rotate} 0.7s ease 1;
-  }
+export const Titlee = styled.h1`
+  width: 80%;
+  position: relative;
+  align-content: center;
+  align-self: center;
   &::before {
-    background: ${(props) => (props.sign === "up" ? "red" : "white")};
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-top: 2px solid red;
+    border-right: 2px solid red;
+    animation: ${bordertop} 2s ease infinite alternate;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-bottom: 2px solid red;
+    border-left: 2px solid red;
+    animation: ${borderbottom} 2s ease infinite alternate;
   }
 `;
 
